@@ -1,0 +1,23 @@
+name: Deploy to Firebase Web Hosting
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - name: Install
+      run: npm install
+    - name: build
+      run: npx ng build
+    - name: Deploy
+      run: |
+        npm i -g firebase-tools
+        firebase deploy --project art-of-bloom-admin --token ${{ secrets.FIREBASE_TOKEN }}
