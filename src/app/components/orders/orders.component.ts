@@ -54,9 +54,14 @@ export class OrdersComponent implements OnInit {
           total += item.price * item.quantity;
         });
         return {
-          id, ...value, total
+          id, ...value, total, disabled: false
         }
       }).reverse();
     });
+  }
+
+  remove(order: any) {
+    order.disabled = true;
+    this.order.removeOrder(order.id).then(() => this.getOrderList());
   }
 }

@@ -6,15 +6,13 @@ import { OrdersComponent } from './components/orders/orders.component';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
-    children: [
-      // auth routes
-      { path: 'orders', component: OrdersComponent }
-    ]
+    loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule)
   },
   // public routes
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  }
 ];
 
 @NgModule({
