@@ -13,6 +13,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from '../components/add-product/add-product.component';
+import { ProductListComponent } from '../components/product-list/product-list.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { AddProductComponent } from '../components/add-product/add-product.compo
     NavComponent,
     OrdersComponent,
     AddProductComponent,
+    ProductListComponent,
 
   ],
   imports: [

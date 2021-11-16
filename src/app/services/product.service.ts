@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, push, serverTimestamp } from "firebase/database";
+import { getDatabase, ref, push, serverTimestamp, orderByKey, query, get } from "firebase/database";
 import { getAuth } from '@firebase/auth';
 
 @Injectable({
@@ -13,5 +13,10 @@ export class ProductService {
     data.updatedAt = serverTimestamp();
     data.user_id = getAuth().currentUser?.uid;
     return push(this.$ref, data);
+  }
+
+  getProducts() {
+    let q = query(this.$ref, orderByKey());
+    return get(q);
   }
 }

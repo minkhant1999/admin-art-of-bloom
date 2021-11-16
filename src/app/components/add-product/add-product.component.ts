@@ -37,8 +37,8 @@ export class AddProductComponent implements OnInit {
     ).catch((e) =>
       console.log(e, 'Error')
     )
-
   }
+
   uploadImage(e: any) {
     let file = e.target.files[0];
     let storageRef = ref(getStorage(), Date.now() + '-' + file.name);
