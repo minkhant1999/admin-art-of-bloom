@@ -10,6 +10,7 @@ import { MatIconModule } from '@angular/material/icon';
 import initializeFirebaseApp from './firebase.init';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './shared/nav/nav.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NavComponent } from './shared/nav/nav.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatButtonModule
   ],
   providers: [
     {

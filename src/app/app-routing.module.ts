@@ -7,10 +7,13 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
+      // auth routes
       { path: 'orders', component: OrdersComponent }
     ]
   },
+  // public routes
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }
 ];
 

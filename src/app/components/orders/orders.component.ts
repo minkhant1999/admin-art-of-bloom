@@ -8,22 +8,17 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./orders.component.css']
 })
 export class OrdersComponent implements OnInit {
-  token?: string;
   orders: any[] = [];
 
-  constructor(private auth: AuthService, private order: OrderService) { }
+  constructor(private order: OrderService) { }
 
-  async ngOnInit() {
-    this.token = await this.auth.getIdToken();
+  ngOnInit() {
     this.getOrderList()
   }
 
   getOrderList() {
-    if (!this.token) {
-      return console.error('required: auth token')
-    }
-    this.order.getOrders(this.token).subscribe(data => {
-      this.orders = Object.entries(data).map(([id, value]: [string, any]) => {
+    this.order.getLatestOrders(10).then((data) => {
+      this.orders = Object.entries(data.val()).map(([id, value]: [string, any]) => {
         let total = 0;
         value.items.forEach((item: any) => {
           total += item.price * item.quantity;
@@ -32,9 +27,36 @@ export class OrdersComponent implements OnInit {
           id, ...value, total
         }
       }).reverse();
-      console.log(this.orders);
-
-    })
+    });
   }
 
+  prev() {
+    let firstOrder = this.orders[0];
+    this.order.getBeforeOrders(10, firstOrder.id).then(data => {
+      this.orders = Object.entries(data.val()).map(([id, value]: [string, any]) => {
+        let total = 0;
+        value.items.forEach((item: any) => {
+          total += item.price * item.quantity;
+        });
+        return {
+          id, ...value, total
+        }
+      }).reverse();
+    });
+  }
+
+  next() {
+    let lastOrder = this.orders[this.orders.length - 1];
+    this.order.getAfterOrders(10, lastOrder.id).then(data => {
+      this.orders = Object.entries(data.val()).map(([id, value]: [string, any]) => {
+        let total = 0;
+        value.items.forEach((item: any) => {
+          total += item.price * item.quantity;
+        });
+        return {
+          id, ...value, total
+        }
+      }).reverse();
+    });
+  }
 }
