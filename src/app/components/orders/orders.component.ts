@@ -19,6 +19,7 @@ export class OrdersComponent implements OnInit {
   getOrderList() {
     this.order.getLatestOrders(10).then((data) => {
       this.orders = Object.entries(data.val()).map(([id, value]: [string, any]) => {
+
         let total = 0;
         value.items.forEach((item: any) => {
           total += item.price * item.quantity;
@@ -27,7 +28,10 @@ export class OrdersComponent implements OnInit {
           id, ...value, total
         }
       }).reverse();
+      console.log(this.orders);
+
     });
+
   }
 
   prev() {

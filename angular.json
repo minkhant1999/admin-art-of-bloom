@@ -32,7 +32,8 @@
                         ],
                         "scripts": [],
                         "allowedCommonJsDependencies": [
-                            "firebase"
+                            "firebase",
+                            "@etherio/database"
                         ]
                     },
                     "configurations": {

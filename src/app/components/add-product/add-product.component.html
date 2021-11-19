@@ -17,10 +17,13 @@
                 <mat-label>Image</mat-label>
                 <input matInput formControlName="image" type="url">
             </mat-form-field>
-            <input type="file" accept="image/*" (change)="uploadImage($event)">
+            <button type="button" mat-raised-button (click)="fileInput.click()" class="bg-gray-800  text-white col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2">
+                Upload Image
+            </button>
         </div>
-        <div class="text-right">
-            <button mat-raised-button type="submit">Add</button>
+        <input hidden #fileInput type="file" accept="image/*" (change)="uploadImage($event)">
+        <div class="text-right my-4 pt-4">
+            <button mat-raised-button type="submit" class="w-full" color="primary">Add</button>
         </div>
     </form>
 </div>

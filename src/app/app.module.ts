@@ -11,10 +11,12 @@ import initializeFirebaseApp from './firebase.init';
 import { NavComponent } from './shared/nav/nav.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { DetailsComponent } from './components/product-list/details/details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DetailsComponent,
   ],
   imports: [
     BrowserModule,
