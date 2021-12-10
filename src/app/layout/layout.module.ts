@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from '../components/add-product/add-product.component';
 import { ProductListComponent } from '../components/product-list/product-list.component';
+import { AddProductDetailsComponent } from '../components/add-product-details/add-product-details.component';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { ProductListComponent } from '../components/product-list/product-list.co
     OrdersComponent,
     AddProductComponent,
     ProductListComponent,
-
+    AddProductDetailsComponent
   ],
   imports: [
     CommonModule,

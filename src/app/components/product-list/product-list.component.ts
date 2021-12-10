@@ -22,27 +22,8 @@ export class ProductListComponent implements OnInit {
 
   getList() {
     this.database.ref('plants').list().then((collection) => {
-      this.products = collection.toArray().map((doc) => doc.toJSON())
+      this.products = collection.toArray().map((doc) => doc.toJSON()).reverse()
     })
   }
 
-  getOrderList() {
-    this.database.ref('plants').list().then((collection) => {
-      this.products = collection.toArray()
-    })
-    return
-    this.product.getProducts().then((data) => {
-      this.products = Object.entries(data.val()).map(([id, value]: [string, any]) => {
-
-        value.items.forEach((item: any) => {
-        });
-        return {
-          id, ...value
-        }
-      }).reverse();
-      console.log(this.products);
-
-    });
-
-  }
 }
