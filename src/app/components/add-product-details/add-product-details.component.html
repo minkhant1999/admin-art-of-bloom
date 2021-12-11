@@ -25,11 +25,15 @@
                 <mat-label>rate</mat-label>
                 <input matInput formControlName="rate" type="text">
             </mat-form-field>
+            <mat-form-field class="w-full col-span-12" *ngFor="let image of images;let i=index">
+                <mat-label>Image #{{ i + 1 }}</mat-label>
+                <input matInput type="text" readonly [value]="image">
+            </mat-form-field>
             <button type="button" mat-raised-button (click)="fileInput.click()" class="bg-gray-800  text-white col-span-6 sm:col-span-4 md:col-span-3 lg:col-span-2">
                 Upload Image
             </button>
         </div>
-        <input hidden #fileInput type="file" accept="image/*" (change)="uploadImage($event)">
+        <input hidden #fileInput type="file" accept="image/*" (change)="uploadImage($event)" multiple>
         <div class="text-right my-4 pt-4">
             <button mat-raised-button type="submit" class="w-full" color="primary">Add</button>
         </div>

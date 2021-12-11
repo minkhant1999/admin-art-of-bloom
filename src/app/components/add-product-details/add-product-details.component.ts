@@ -11,6 +11,7 @@ export class AddProductDetailsComponent implements OnInit {
   formGroup: FormGroup;
   id: string;
   link: string;
+  images: string[] = [];
   constructor(private product: ProductService, private fb: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class AddProductDetailsComponent implements OnInit {
           data.light && this.formGroup.get('light')?.setValue(data.light)
           data.type && this.formGroup.get('type')?.setValue(data.type)
           data.rate && this.formGroup.get('rate')?.setValue(data.rate)
-          data.images && this.formGroup.get('images')?.setValue(data.images)
+          data.images && (this.images = Object.values(data.images))
 
         })
       })
@@ -49,7 +50,8 @@ export class AddProductDetailsComponent implements OnInit {
     if (!this.formGroup.valid) {
       return alert('Invalid')
     }
-    this.product.addDetails(this.link, this.formGroup.value).then(() =>
+    const data = { ...this.formGroup.value, images: this.images }
+    this.product.addDetails(this.link, data).then(() =>
       alert('Success')
     ).catch(
       e => alert('Error')
@@ -57,14 +59,14 @@ export class AddProductDetailsComponent implements OnInit {
   }
 
   uploadImage(e: any) {
-    let file = e.target.files[0];
-    let storageRef = ref(getStorage(), Date.now() + '-' + file.name);
-
-    uploadBytes(storageRef, file).then((result) => {
-      getDownloadURL(result.ref).then((url) => {
-        this.formGroup.get('image')?.setValue(url);
-      });
-    })
+    for (let file of e.target.files) {
+      let storageRef = ref(getStorage(), Date.now() + '-' + file.name);
+      uploadBytes(storageRef, file).then((result) => {
+        getDownloadURL(result.ref).then((url) => {
+          this.images.push(url)
+        });
+      })
+    }
   }
 
 }
