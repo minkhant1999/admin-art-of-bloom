@@ -50,7 +50,7 @@ export class AddProductDetailsComponent implements OnInit {
     if (!this.formGroup.valid) {
       return alert('Invalid')
     }
-    const data = { ...this.formGroup.value, images: this.images }
+    const data = { ...this.formGroup.value, images: this.images.filter(i => !!i) }
     this.product.addDetails(this.link, data).then(() =>
       alert('Success')
     ).catch(
