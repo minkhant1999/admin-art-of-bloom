@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
+import { Router } from '@angular/router';
 export interface Product {
   name: string;
   price: string;
@@ -17,7 +18,7 @@ export interface Product {
 export class AddProductComponent implements OnInit {
   formGroup!: FormGroup;
 
-  constructor(private product: ProductService, private fb: FormBuilder) { }
+  constructor(private product: ProductService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -33,7 +34,7 @@ export class AddProductComponent implements OnInit {
       return alert('Invalid')
     }
     this.product.addProduct(this.formGroup.value).then(() =>
-      alert('Success')
+      this.router.navigate(['/product-list'])
     ).catch((e) =>
       console.log(e, 'Error')
     )

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, push, serverTimestamp, update, query, get } from "firebase/database";
+import { getDatabase, ref, push, serverTimestamp, update, remove, get } from "firebase/database";
 import { getAuth } from '@firebase/auth';
 import { HttpClient } from '@angular/common/http';
 
@@ -40,4 +40,9 @@ export class ProductService {
     return this.http.get<any>(this.plantDetailsUrl + '/' + id + '.json');
   }
 
+  removePlant(element) {
+    const plantRef = ref(getDatabase(), `plants/${element._id}`);
+    const plantDetailRef = ref(getDatabase(), `plantDetails/${element.link}`);
+    return remove(plantRef).then(() => remove(plantDetailRef));
+  }
 }

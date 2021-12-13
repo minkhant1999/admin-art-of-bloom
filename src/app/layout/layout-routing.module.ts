@@ -15,25 +15,31 @@ const routes: Routes = [
     path: '',
     canActivateChild: [AuthGuard],
     component: LayoutComponent,
-    children: [{
-      path: "orders",
-      component: OrdersComponent
-    }, {
-      path: "add-product",
-      component: AddProductComponent
-    },
-    {
-      path: "add-product-details/:id",
-      component: AddProductDetailsComponent
-    },
-    {
-      path: "product-list",
-      component: ProductListComponent
-    },
-    {
-      path: "details/:name",
-      component: DetailsComponent
-    }]
+    children: [
+      {
+        path: '',
+        redirectTo: "product-list",
+        pathMatch: "full",
+      },
+      {
+        path: "orders",
+        component: OrdersComponent
+      }, {
+        path: "add-product",
+        component: AddProductComponent
+      },
+      {
+        path: "add-product-details/:id",
+        component: AddProductDetailsComponent
+      },
+      {
+        path: "product-list",
+        component: ProductListComponent
+      },
+      {
+        path: "details/:name",
+        component: DetailsComponent
+      }]
   }
 ];
 

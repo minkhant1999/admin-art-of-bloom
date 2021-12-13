@@ -26,4 +26,10 @@ export class ProductListComponent implements OnInit {
     })
   }
 
+  delete(element) {
+    if (confirm('Do you want to delete?')) {
+      this.product.removePlant(element).then(() => this.getList());
+    }
+  }
+
 }

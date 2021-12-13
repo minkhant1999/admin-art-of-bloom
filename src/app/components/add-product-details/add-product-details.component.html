@@ -7,15 +7,24 @@
             </mat-form-field>
             <mat-form-field class="w-full col-span-12">
                 <mat-label>Body</mat-label>
-                <input matInput formControlName="body" type="text">
+                <textarea matInput formControlName="body" rows="4"></textarea>
             </mat-form-field>
             <mat-form-field class="w-full col-span-12">
                 <mat-label>co2</mat-label>
-                <input matInput formControlName="co2" type="text">
+                <mat-select formControlName="co2">
+                    <mat-option value="No">No</mat-option>
+                    <mat-option value="Low">Low</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="High">High</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="w-full col-span-12">
                 <mat-label>light</mat-label>
-                <input matInput formControlName="light" type="text">
+                <mat-select formControlName="light">
+                    <mat-option value="Low">Low</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="High">High</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="w-full col-span-12">
                 <mat-label>type</mat-label>
@@ -23,7 +32,11 @@
             </mat-form-field>
             <mat-form-field class="w-full col-span-12">
                 <mat-label>rate</mat-label>
-                <input matInput formControlName="rate" type="text">
+                <mat-select formControlName="rate">
+                    <mat-option value="Slow">Slow</mat-option>
+                    <mat-option value="Medium">Medium</mat-option>
+                    <mat-option value="Fast">Fast</mat-option>
+                </mat-select>
             </mat-form-field>
             <mat-form-field class="w-full col-span-12" *ngFor="let image of images;let i=index">
                 <mat-label>Image #{{ i + 1 }}</mat-label>

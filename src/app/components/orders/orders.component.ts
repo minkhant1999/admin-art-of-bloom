@@ -65,7 +65,9 @@ export class OrdersComponent implements OnInit {
   }
 
   remove(order: any) {
-    order.disabled = true;
-    this.order.removeOrder(order.id).then(() => this.getOrderList());
+    if (confirm('Are you sure?')) {
+      order.disabled = true;
+      this.order.removeOrder(order.id).then(() => this.getOrderList());
+    }
   }
 }

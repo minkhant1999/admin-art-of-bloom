@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/services/product.service';
 import { getStorage, uploadBytes, ref, getDownloadURL } from "firebase/storage";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-add-product-details',
   templateUrl: './add-product-details.component.html',
@@ -12,7 +12,7 @@ export class AddProductDetailsComponent implements OnInit {
   id: string;
   link: string;
   images: string[] = [];
-  constructor(private product: ProductService, private fb: FormBuilder, private route: ActivatedRoute) { }
+  constructor(private product: ProductService, private fb: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -52,7 +52,7 @@ export class AddProductDetailsComponent implements OnInit {
     }
     const data = { ...this.formGroup.value, images: this.images.filter(i => !!i) }
     this.product.addDetails(this.link, data).then(() =>
-      alert('Success')
+      this.router.navigate(['/product-list'])
     ).catch(
       e => alert('Error')
     )

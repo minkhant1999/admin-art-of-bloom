@@ -11,6 +11,7 @@ import { NavComponent } from '../shared/nav/nav.component';
 import { OrdersComponent } from '../components/orders/orders.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductComponent } from '../components/add-product/add-product.component';
 import { ProductListComponent } from '../components/product-list/product-list.component';
@@ -36,7 +37,8 @@ import { AddProductDetailsComponent } from '../components/add-product-details/ad
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class LayoutModule { }

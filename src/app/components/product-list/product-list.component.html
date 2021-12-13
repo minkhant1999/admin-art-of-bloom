@@ -52,7 +52,7 @@
                                         <mat-icon>edit</mat-icon>
                                     </button>
 
-                                    <button mat-icon-button>
+                                    <button mat-icon-button (click)="delete(product)">
                                         <mat-icon>delete</mat-icon>
 
                                     </button>
@@ -63,7 +63,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="text-center">
+                <div class="text-center hidden">
                     <div class="inline-block p-4">
                         <button mat-raised-button color="primary">Prev</button>
                     </div>
