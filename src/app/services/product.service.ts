@@ -45,4 +45,9 @@ export class ProductService {
     const plantDetailRef = ref(getDatabase(), `plantDetails/${element.link}`);
     return remove(plantRef).then(() => remove(plantDetailRef));
   }
+  updatePlant(id, element) {
+    const plantRef = ref(getDatabase(), `plants/${id}`);
+    element.updatedAt = serverTimestamp();
+    return update(plantRef, element);
+  }
 }

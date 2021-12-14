@@ -4,8 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../auth.guard';
 import { AddProductDetailsComponent } from '../components/add-product-details/add-product-details.component';
 import { AddProductComponent } from '../components/add-product/add-product.component';
+import { EditProductComponent } from '../components/edit-product/edit-product.component';
 import { OrdersComponent } from '../components/orders/orders.component';
-import { DetailsComponent } from '../components/product-list/details/details.component';
 import { ProductListComponent } from '../components/product-list/product-list.component';
 import { ProductService } from '../services/product.service';
 import { LayoutComponent } from './layout.component';
@@ -37,8 +37,8 @@ const routes: Routes = [
         component: ProductListComponent
       },
       {
-        path: "details/:name",
-        component: DetailsComponent
+        path: "edit-product/:id",
+        component: EditProductComponent
       }]
   }
 ];
